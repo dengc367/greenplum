@@ -57,7 +57,7 @@
 
 - name: 02. stop freewalld
   when: ansible_distribution == "CentOS" and ansible_distribution_major_version == "7"
-  service: name={{ item }} state=stopped
+  service: name={{ item }} state=stopped enabled=no
   with_items:
   - firewalld
   ignore_errors: true

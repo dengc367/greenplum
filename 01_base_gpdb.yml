@@ -4,4 +4,4 @@
   - base_gpdb
 
   tasks:
-  - debug: msg="主机 {{ ansible_nodename }} 将在 5 秒后重启，稍后请执行 02—deploy_gpdb.yml 继续安装 GreenPlum!"
+  - debug: msg="Host {{ ansible_nodename }} will be restarted in 5 seconds，Please execute later  02—deploy_gpdb.yml continue installation GreenPlum-Cluster!"

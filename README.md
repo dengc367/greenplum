@@ -1,5 +1,8 @@
 # 基于 Ansible-Playbook 自动化部署 GreenPlum 数据仓库
-> 本项目是通过 Ansible-Playbook 剧本进行自动化部署安装 GreenPlum 数据仓库。当前剧本版本是：v1.0。
+> 本项目是通过 Ansible-Playbook 剧本,自动化部署安装 GreenPlum 数据仓库。
+> 版本是：v1.1
+> This project uses ansible-playbook script to perform automated deployment and installation of greenplus data warehouse.
+> version: v1.1
 
 # 第1部分 项目部署
 ## 1.1 软件版本说明
@@ -39,6 +42,7 @@ http://192.168.61.61:28080
 ├── 02_deploy_gpdb.yml                                 # 部署 GreenPlum 脚本
 ├── ansible.cfg                                        # GreenPlum Ansible 配置文件 
 ├── hosts                                              # 部署主机列表
+├── LICENSE                                            
 ├── README.md
 ├── remove_gpdb.yml                                    # 清理 GreenPlum 脚本
 └── roles

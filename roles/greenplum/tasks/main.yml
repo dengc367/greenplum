@@ -1,23 +1,23 @@
-- name: 21. 创建 gpadmin 组
+- name: 21. create gpadmin group
   group: name=gpadmin gid=3000 state=present
 
-- name: 20. 创建 gpadmin 用户
+- name: 20. create gpadmin
   user: name=gpadmin uid=3000 group=gpadmin password={{ gpadmin_password | password_hash('sha512') }} home=/home/gpadmin shell=/bin/bash state=present
 
-- name: 19. 创建管理目录
+- name: 19. create soft directory
   when: ansible_os_family == "RedHat" and ansible_distribution_major_version == "7"
   file: path={{ item }} state=directory owner=gpadmin group=gpadmin mode=0755 recurse=yes
   with_items:
   - /greenplum/soft
   - /greenplum/data
 
-- name: 18. 创建管理目录
+- name: 18. create master data directory
   when: ansible_os_family == "RedHat" and ansible_distribution_major_version == "7" and ansible_default_ipv4.address in groups['gpmaster'] 
   file: path={{ item }} state=directory owner=gpadmin group=gpadmin mode=0755 recurse=yes
   with_items:
   - /greenplum/data/gpmaster
 
-- name: 17. 创建数据目录
+- name: 17. create data directory
   when: ansible_os_family == "RedHat" and ansible_distribution_major_version == "7" and ansible_default_ipv4.address in groups['gpsegment'] 
   file: path=/greenplum/data/{{ item }} state=directory owner=gpadmin group=gpadmin mode=0755 recurse=yes
   with_items:
@@ -38,67 +38,67 @@
   - gpdatam7
   - gpdatam8
 
-- name: 16. 创建 all_nodes 文件
+- name: 16. create all_nodes file
   local_action: shell > {{ all_nodes }} 
   run_once: true
 
-- name: 15. 升级 all_nodes 文件
+- name: 15. update all_nodes
   local_action: script create_all.sh
   environment:
     hostname: '{{ hostname }}'
 
-- name: 14. 拷贝新 all_nodes 文件
+- name: 14. copy new all_nodes
   when: ansible_os_family == "RedHat" and ansible_distribution_major_version == "7" and ansible_default_ipv4.address in groups['gpmaster'] 
   copy: src=all_nodes dest=/home/gpadmin owner=gpadmin group=gpadmin mode=0644
 
-- name: 13. 创建 seg_nodes 文件
+- name: 13. create seg_nodes
   local_action: shell > {{ seg_nodes }} 
   run_once: true
 
-- name: 12. 升级 seg_nodes 文件
+- name: 12. update seg_nodes
   when: ansible_os_family == "RedHat" and ansible_distribution_major_version == "7" and ansible_default_ipv4.address in groups['gpsegment'] 
   local_action: script upgrade_seg.sh
   environment:
     hostname: '{{ hostname }}'
 
-- name: 11. 拷贝新 seg_nodes 文件
+- name: 11. copy new seg_nodes
   when: ansible_os_family == "RedHat" and ansible_distribution_major_version == "7" and ansible_default_ipv4.address in groups['gpmaster']
   copy: src=seg_nodes dest=/home/gpadmin owner=gpadmin group=gpadmin mode=0644
 
-- name: 10. 拷贝安装文件
+- name: 10. copy setup file
   when: ansible_os_family == "RedHat" and ansible_distribution_major_version == "7" and ansible_default_ipv4.address in groups['gpmaster']
   template: "src=gpinitsystem_config.j2 dest=/home/gpadmin/gpinitsystem_config owner=gpadmin group=gpadmin mode=0644"
   
-- name: 09. 解压 greenplum-db 软件包
+- name: 09. unzip  greenplum-db package
   unarchive: "src=greenplum-db.tar.gz dest=/greenplum/soft owner=gpadmin group=gpadmin mode=0755"
 
-- name: 08. 创建 greenplum-db 软连接
+- name: 08. create greenplum-db link
   file: "src={{ db }} dest=/greenplum/soft/greenplum-db state=link owner=gpadmin group=gpadmin mode=0755"
 
-- name: 07. 解压 greenplum-cc-web 软件包
+- name: 07. unzip greenplum-cc-web package
   unarchive: "src=greenplum-cc-web.tar.gz dest=/greenplum/soft owner=gpadmin group=gpadmin mode=0755"
 
-- name: 06. 创建 greenplum-cc-web 软连接
+- name: 06. create greenplum-cc-web link
   file: "src={{ web }} dest=/greenplum/soft/greenplum-cc-web state=link owner=gpadmin group=gpadmin mode=0755"
   
-- name: 05. 分发用户 key 
+- name: 05. copy key 
   remote_user: gpadmin
   unarchive: "src=key.tar.gz dest=/home/gpadmin "
 
-- name: 04. 设置目录权限
+- name: 04. set directory mode
   file: "path=/greenplum state=directory owner=gpadmin group=gpadmin mode=0755 recurse=yes"
 
-- name: 03. 设置 gpadmin 环境变量
+- name: 03. set gpadmin env
   when: ansible_os_family == "RedHat" and ansible_distribution_major_version == "7" and ansible_default_ipv4.address in groups['gpmaster']
   template: "src=bash_profile.j2 dest=/home/gpadmin/.bash_profile owner=gpadmin group=gpadmin mode=0644"
   ignore_errors: true 
 
-- name: 02. 创建 初始化脚本
+- name: 02. create init script
   when: ansible_os_family == "RedHat" and ansible_distribution_major_version == "7" and ansible_default_ipv4.address in groups['gpmaster']
   remote_user: gpadmin
   copy: "src=init_gpdb.sh dest=/home/gpadmin/init_gpdb.sh owner=gpadmin group=gpadmin mode=0755" 
 
-- name: 01. 部署 GreenPlum 集群
+- name: 01. Deploy GreenPlum-Cluster
   when: ansible_os_family == "RedHat" and ansible_distribution_major_version == "7" and ansible_default_ipv4.address in groups['gpmaster']
   remote_user: gpadmin
   shell: "/bin/bash /home/gpadmin/init_gpdb.sh"

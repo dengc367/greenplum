@@ -4,14 +4,14 @@
 #  - greenplum-new
 
   tasks:
-  - name: 结束 gpadmin 进程
+  - name: kill gpadmin process
     shell: "pkill -u gpadmin"
     ignore_errors: true
 
-  - name: 删除 gpadmin 用户
+  - name: delete gpadmin
     user: name=gpadmin state=absent remove=yes
 
-  - name: 删除 greenplum 数据目录
+  - name: delete  greenplum data-directory
     file: name={{ item }} state=absent
     with_items:
     - "/greenplum/soft"

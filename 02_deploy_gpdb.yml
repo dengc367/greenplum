@@ -4,4 +4,4 @@
   - greenplum
   
   tasks:
-  - debug: msg="主机 {{ ansible_nodename }} GreenPlum 已部署完毕！！！"
+  - debug: msg="Host {{ ansible_nodename }} GreenPlum deploy Success !!!"

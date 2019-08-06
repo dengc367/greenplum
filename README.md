@@ -16,11 +16,6 @@
 |3   |192.168.61.63 |gpsegment63 |16Gb|CentOS 7.5.1804|3.10.0-862.9.1.el7.x86_64|
 |4   |192.168.61.64 |gpsegment64 |16Gb|CentOS 7.5.1804|3.10.0-862.9.1.el7.x86_64|
 
-## *** 下载软件 ***
-> /下创建 playbook 部署目录，git本项目到此目录。
-[下载软件包](https://pan.baidu.com/s/15u11nAaFzcQORFhp7FXKcQ)
->解压软件包到 /greenplum/roles/greenplum/files/ 目录
-
 ## 1.3 基础环境(需要重启)
 ```
 /usr/bin/bash 01_base_gpdb.yml
@@ -296,5 +291,5 @@ show all
 
 ## 4.7 查看当前日期属于一年中第几周
 ```
-select EXTRACT(week from TIMESTAMP '2018-08-03');
+select EXTRACT(week from TIMESTAMP '2018-05-11');
 ```

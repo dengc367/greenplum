@@ -25,10 +25,18 @@
   - gpdatap2
   - gpdatap3
   - gpdatap4
+  - gpdatap5
+  - gpdatap6
+  - gpdatap7
+  - gpdatap8
   - gpdatam1
   - gpdatam2
   - gpdatam3
   - gpdatam4
+  - gpdatam5
+  - gpdatam6
+  - gpdatam7
+  - gpdatam8
 
 - name: 16. 创建 all_nodes 文件
   local_action: shell > {{ all_nodes }} 
@@ -79,7 +87,6 @@
 
 - name: 04. 设置目录权限
   file: "path=/greenplum state=directory owner=gpadmin group=gpadmin mode=0755 recurse=yes"
-#  shell: "chown -R gpadmin:gpadmin /greenplum"
 
 - name: 03. 设置 gpadmin 环境变量
   when: ansible_os_family == "RedHat" and ansible_distribution_major_version == "7" and ansible_default_ipv4.address in groups['gpmaster']

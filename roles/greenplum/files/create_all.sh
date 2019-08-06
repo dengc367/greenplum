@@ -1,1 +1,1 @@
-echo $hostname >> /playbook/greenplum/roles/greenplum/files/all_nodes
+echo $hostname >> /data/playbook/greenplum/roles/greenplum/files/all_nodes

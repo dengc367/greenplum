@@ -1,1 +1,1 @@
-echo $ip $hostname >> /playbook/greenplum/roles/greenplum/files/hosts 
+echo $ip $hostname >> /data/playbook/greenplum/roles/greenplum/files/hosts 

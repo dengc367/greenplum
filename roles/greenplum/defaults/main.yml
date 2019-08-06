@@ -1,8 +1,8 @@
 # set setup env
-all_nodes: "/playbook/greenplum/roles/greenplum/files/all_nodes"
-seg_nodes: "/playbook/greenplum/roles/greenplum/files/seg_nodes"
-data_primary: "(/greenplum/data/gpdatap1 /greenplum/data/gpdatap2 /greenplum/data/gpdatap3 /greenplum/data/gpdatap4)"
-data_mirror: "(/greenplum/data/gpdatam1 /greenplum/data/gpdatam2 /greenplum/data/gpdatam3 /greenplum/data/gpdatam4)"
+all_nodes: "/data/playbook/greenplum/roles/greenplum/files/all_nodes"
+seg_nodes: "/data/playbook/greenplum/roles/greenplum/files/seg_nodes"
+data_primary: "(/greenplum/data/gpdatap1 /greenplum/data/gpdatap2 /greenplum/data/gpdatap3 /greenplum/data/gpdatap4 /greenplum/data/gpdatap5 /greenplum/data/gpdatap6 /greenplum/data/gpdatap7 /greenplum/data/gpdatap8)"
+data_mirror: "(/greenplum/data/gpdatam1 /greenplum/data/gpdatam2 /greenplum/data/gpdatam3 /greenplum/data/gpdatam4 /greenplum/data/gpdatam5 /greenplum/data/gpdatam6 /greenplum/data/gpdatam7 /greenplum/data/gpdatam8)"
 
 # set soft deploy directory
 db: "/greenplum/soft/greenplum-db-5.10.0"

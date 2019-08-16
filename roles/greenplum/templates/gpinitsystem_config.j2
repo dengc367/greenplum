@@ -7,7 +7,7 @@
 ################################################
 
 #### Name of this Greenplum system enclosed in quotes.
-ARRAY_NAME="ChinaDaas Data Platform"
+ARRAY_NAME="Big Data Platform"
 
 #### Naming convention for utility-generated data directories.
 SEG_PREFIX=gpseg
@@ -28,11 +28,11 @@ MASTER_MAX_CONNECT=1000
 declare -a DATA_DIRECTORY={{ data_primary  }}
 
 #### OS-configured hostname or IP address of the master host.
-MASTER_HOSTNAME=gpmaster61
+MASTER_HOSTNAME={{ GP_master }}
 
 #### File system location where the master data directory 
 #### will be created.
-MASTER_DIRECTORY=/greenplum/data/gpmaster
+MASTER_DIRECTORY={{ gp_master_dir }}
 
 #### Port number for the master instance. 
 MASTER_PORT=5432
@@ -75,9 +75,9 @@ declare -a MIRROR_DATA_DIRECTORY={{ data_mirror }}
 ################################################
 
 #### Create a database of this name after initialization.
-DATABASE_NAME=test
+DATABASE_NAME=testdb
 
 #### Specify the location of the host address file here instead of
 #### with the the -h option of gpinitsystem.
 #MACHINE_LIST_FILE=/home/gpadmin/gpconfigs/hostfile_gpinitsystem
-MACHINE_LIST_FILE=/home/gpadmin/seg_nodes
+MACHINE_LIST_FILE={{ host_list }}

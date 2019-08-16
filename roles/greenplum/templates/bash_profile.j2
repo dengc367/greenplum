@@ -9,8 +9,8 @@ fi
 
 PATH=$PATH:$HOME/bin
 export PGPORT=5432
-export MASTER_DATA_DIRECTORY=/greenplum/data/gpmaster/gpseg-1
-source /greenplum/soft/greenplum-db/greenplum_path.sh
-source /greenplum/soft/greenplum-cc-web/gpcc_path.sh
+export MASTER_DATA_DIRECTORY={{ gp_master_dir }}/gpseg-1
+source {{ Base_dir }}/greenplum-db/greenplum_path.sh
+source {{ Base_dir }}/soft/greenplum-cc-web/gpcc_path.sh
 
 export PATH

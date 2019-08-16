@@ -1,8 +1,12 @@
 # set setup env
+Base_dir: "/greenplum/soft"
+GP_master: "gpmaster61"
+gp_master_dir: "/greenplum/data/gpmaster"
 all_nodes: "/data/playbook/greenplum/roles/greenplum/files/all_nodes"
 seg_nodes: "/data/playbook/greenplum/roles/greenplum/files/seg_nodes"
 data_primary: "(/greenplum/data/gpdatap1 /greenplum/data/gpdatap2 /greenplum/data/gpdatap3 /greenplum/data/gpdatap4 /greenplum/data/gpdatap5 /greenplum/data/gpdatap6 /greenplum/data/gpdatap7 /greenplum/data/gpdatap8)"
 data_mirror: "(/greenplum/data/gpdatam1 /greenplum/data/gpdatam2 /greenplum/data/gpdatam3 /greenplum/data/gpdatam4 /greenplum/data/gpdatam5 /greenplum/data/gpdatam6 /greenplum/data/gpdatam7 /greenplum/data/gpdatam8)"
+host_list: "/home/gpadmin/seg_nodes"
 
 # set soft deploy directory
 db: "/greenplum/soft/greenplum-db-5.10.0"

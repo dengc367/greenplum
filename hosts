@@ -2,17 +2,19 @@
 [greenplum:children]
 gpmaster
 gpsegment
+gpstandby
 
 # master host
 [gpmaster]
-192.168.61.61 hostname=gpmaster61 ansible_ssh_pass=gpadmin
+10.254.65.59 hostname=BI-10-254-65-59.centos.pekdc1.chunbo.com ansible_ssh_pass=gpadmin
 
 # data host
 [gpsegment]
-192.168.61.62 hostname=gpsegment62 ansible_ssh_pass=gpadmin
-192.168.61.63 hostname=gpsegment63 ansible_ssh_pass=gpadmin
-192.168.61.64 hostname=gpsegment64 ansible_ssh_pass=gpadmin
+10.254.65.61 hostname=BI-10-254-65-61.centos.pekdc1.chunbo.com ansible_ssh_pass=gpadmin
+10.254.65.62 hostname=BI-10-254-65-62.centos.pekdc1.chunbo.com ansible_ssh_pass=gpadmin
+10.254.65.63 hostname=BI-10-254-65-63.centos.pekdc1.chunbo.com ansible_ssh_pass=gpadmin
+10.254.65.64 hostname=BI-10-254-65-64.centos.pekdc1.chunbo.com ansible_ssh_pass=gpadmin
 
 # backup hosts
 [gpstandby]
-192.168.61.65 hostname=gpstandby65 ansible_ssh_pass=gpadmin
+10.254.65.60 hostname=BI-10-254-65-60.centos.pekdc1.chunbo.com ansible_ssh_pass=gpadmin
